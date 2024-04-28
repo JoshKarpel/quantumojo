@@ -23,3 +23,12 @@ fn test_build_from_simd() raises:
 
     for i in range(4):
         assert_true(v[i] == l[i])
+
+
+fn test_add() raises:
+    var v1 = Vector[4].build(SIMD[DType.float64, 4](1, 2, 3, 4))
+    var v2 = Vector[4].build(SIMD[DType.float64, 4](5, 6, 7, 8))
+    var v3 = v1 + v2
+
+    for i in range(4):
+        assert_true(v3[i] == v1[i] + v2[i])
