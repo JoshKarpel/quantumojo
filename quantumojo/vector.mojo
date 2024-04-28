@@ -1,3 +1,6 @@
+from complex import ComplexFloat32, ComplexFloat64
+
+
 @value
 struct Vector[D: DType, N: Int](Sized):
     var data: DTypePointer[D]
@@ -53,6 +56,8 @@ struct Vector[D: DType, N: Int](Sized):
     # (Maybe you can do the same with C# extension methods?)
     # In numpy they just check before calling: https://github.com/numpy/numpy/blob/main/numpy/_core/src/multiarray/multiarraymodule.c#L1328-L1330
     # But that's a runtime check!
+    # Also it seems like there's no complex DType, because DTypes need to be single values?
+    # So do you need to implement a separate complex-valued vector type that holds two vectors if you want this to be type-safe?
 
     fn __getitem__(inout self, i: Int) -> SIMD[D, 1]:
         return self.data[i]
