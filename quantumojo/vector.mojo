@@ -41,6 +41,19 @@ struct Vector[D: DType, N: Int](Sized):
             result[i] = self[i] - other[i]
         return result
 
+    fn dot(inout self, other: Vector[D, N]) -> Scalar[D]:
+        var result = Scalar[D](0)
+        for i in range(N):
+            result += self[i] * other[i]
+        return result
+
+    # Because you can't impl for a specific type, you can't implement conjugate only on complex-valued vectors...
+    # You can do that in Rust! https://docs.rs/ndarray/0.15.6/src/ndarray/impl_views/splitting.rs.html#171-207
+    # The key is that in Rust you can `impl` a trait on a *partially-concrete* type.
+    # (Maybe you can do the same with C# extension methods?)
+    # In numpy they just check before calling: https://github.com/numpy/numpy/blob/main/numpy/_core/src/multiarray/multiarraymodule.c#L1328-L1330
+    # But that's a runtime check!
+
     fn __getitem__(inout self, i: Int) -> SIMD[D, 1]:
         return self.data[i]
 
