@@ -35,6 +35,12 @@ struct Vector[N: Int, D: DType = DType.float64](Sized):
             result[i] = self[i] + other[i]
         return result
 
+    fn __sub__(inout self, inout other: Vector[N, D]) -> Vector[N, D]:
+        var result = Vector[N, D]()
+        for i in range(N):
+            result[i] = self[i] - other[i]
+        return result
+
     fn __getitem__(inout self, i: Int) -> SIMD[D, 1]:
         return self.data[i]
 
