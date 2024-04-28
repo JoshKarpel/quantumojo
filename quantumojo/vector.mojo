@@ -20,6 +20,13 @@ struct Vector[N: Int, D: DType = DType.float64](Sized):
             v[i] = start + (stop - start) * i / (N - 1)
         return v
 
+    @staticmethod
+    fn build(values: SIMD[D, N]) -> Vector[N, D]:
+        var v = Vector[N, D].zeros()
+        for i in range(len(values)):
+            v[i] = values[i]
+        return v
+
     fn __getitem__(inout self, i: Int) -> SIMD[D, 1]:
         return self.data[i]
 
