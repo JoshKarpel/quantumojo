@@ -32,10 +32,11 @@ jobs:
           SKIP: mojo-format
       - name: Install Just
         uses: extractions/setup-just@v2
-#      - name: Install Mojo
-#        run: |
-#          curl https://get.modular.com | MODULAR_AUTH=${{ secrets.MODULAR_AUTH }} sh -
-#          modular auth ${{ secrets.MODULAR_AUTH }}
-#          modular install mojo
-#      - name: Run tests
-#        run: just test
+      - name: Install Mojo
+        run: |
+          curl https://get.modular.com | sh -
+          modular auth examples
+          modular install mojo
+          echo "/home/runner/.modular/pkg/packages.modular.com_mojo/bin/" >> $GITHUB_PATH
+      - name: Run tests
+        run: just test
