@@ -31,11 +31,23 @@ struct Vector[D: DType, N: Int](Sized):
             v[i] = values[i]
         return v
 
+    fn __add__(inout self, other: Scalar[D]) -> Vector[D, N]:
+        var result = Vector[D, N]()
+        for i in range(N):
+            result[i] = self[i] + other
+        return result
+
     fn __add__(inout self, inout other: Vector[D, N]) -> Vector[D, N]:
         # TODO: Why does other need to be inout?
         var result = Vector[D, N]()
         for i in range(N):
             result[i] = self[i] + other[i]
+        return result
+
+    fn __sub__(inout self, other: Scalar[D]) -> Vector[D, N]:
+        var result = Vector[D, N]()
+        for i in range(N):
+            result[i] = self[i] - other
         return result
 
     fn __sub__(inout self, inout other: Vector[D, N]) -> Vector[D, N]:
@@ -44,7 +56,31 @@ struct Vector[D: DType, N: Int](Sized):
             result[i] = self[i] - other[i]
         return result
 
-    fn dot(inout self, other: Vector[D, N]) -> Scalar[D]:
+    fn __mul__(inout self, other: Scalar[D]) -> Vector[D, N]:
+        var result = Vector[D, N]()
+        for i in range(N):
+            result[i] = self[i] * other
+        return result
+
+    fn __mul__(inout self, inout other: Vector[D]) -> Vector[D, N]:
+        var result = Vector[D, N]()
+        for i in range(N):
+            result[i] = self[i] * other[i]
+        return result
+
+    fn __truediv__(inout self, other: Scalar[D]) -> Vector[D, N]:
+        var result = Vector[D, N]()
+        for i in range(N):
+            result[i] = self[i] / other
+        return result
+
+    fn __truediv__(inout self, inout other: Vector[D, N]) -> Vector[D, N]:
+        var result = Vector[D, N]()
+        for i in range(N):
+            result[i] = self[i] / other[i]
+        return result
+
+    fn dot(inout self, inout other: Vector[D, N]) -> Scalar[D]:
         var result = Scalar[D](0)
         for i in range(N):
             result += self[i] * other[i]
