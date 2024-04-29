@@ -1,6 +1,7 @@
 from complex import ComplexFloat32, ComplexFloat64
 
 
+@value
 struct Vector[D: DType, N: Int](Sized):
     var data: DTypePointer[D]
 
