@@ -25,6 +25,13 @@ fn test_build_from_simd() raises:
         assert_true(v[i] == l[i])
 
 
+fn test_build_from_scalar() raises:
+    var v = Vector[DType.float64, 4].build(1)
+
+    for i in range(4):
+        assert_true(v[i] == 1)
+
+
 fn test_add_scalar() raises:
     var v = Vector[DType.float64, 4].build(SIMD[DType.float64, 4](1, 2, 3, 4))
     var v2 = v + 1

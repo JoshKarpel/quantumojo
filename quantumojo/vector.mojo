@@ -31,6 +31,13 @@ struct Vector[D: DType, N: Int](Sized):
             v[i] = values[i]
         return v
 
+    @staticmethod
+    fn build(values: List[Scalar[D]]) -> Vector[D, N]:
+        var v = Vector[D, N]()
+        for i in range(len(values)):
+            v[i] = values[i]
+        return v
+
     fn __add__(inout self, other: Scalar[D]) -> Vector[D, N]:
         var result = Vector[D, N]()
         for i in range(N):
