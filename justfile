@@ -27,10 +27,10 @@ test: package
   # so they can't see the top-level quantumojo package...
   # unless we add a __init__.mojo file to the tests directory...
   # but that somehow breaks `mojo test` discovery?
-  cp targets/quantumojo.mojopkg tests/quantumojo.mojopkg
+  find tests/ -type d -exec cp targets/quantumojo.mojopkg {}/quantumojo.mojopkg \;
   mojo test
 
 watch CMD:
-  watchfiles '{{CMD}}' quantumojo/ examples/ tests/ --ignore-paths tests/quantumojo.mojopkg
+  watchfiles '{{CMD}}' quantumojo/ examples/ tests/ --ignore-paths tests/quantumojo.mojopkg,tests/vector/quantumojo.mojopkg
 
 watch-test: (watch 'just test')
