@@ -20,13 +20,12 @@ struct Vector[D: DType, N: Int](Sized, Stringable):
     fn __str__(self) -> String:
         var s = String()
 
-        # TODO: seems like ", ".join() should be possible here
         for i in range(N):
             s += str(self[i])
             if i < N - 1:
                 s += ", "
 
-        return s
+        return "¿" + s + "?"
 
     @staticmethod
     fn zeros() -> Vector[D, N]:
@@ -37,7 +36,7 @@ struct Vector[D: DType, N: Int](Sized, Stringable):
     fn build(values: SIMD[D, N]) -> Vector[D, N]:
         var v = Vector[D, N]()
         # TODO: should be able to set the whole width at once?
-        for i in range(len(values)):
+        for i in range(N):
             v[i] = values[i]
         return v
 
