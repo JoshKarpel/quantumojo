@@ -105,6 +105,15 @@ struct Vector[D: DType, N: Int](Sized, Stringable):
             result[i] = self[i] * other[i]
         return result
 
+    fn __rmul__(self, other: Scalar[D]) -> Vector[D, N]:
+        return self * other
+
+    fn __pow__(self, other: Scalar[D]) -> Vector[D, N]:
+        var result = Vector[D, N]()
+        for i in range(N):
+            result[i] = self[i] ** other
+        return result
+
     fn __truediv__(self, other: Scalar[D]) -> Vector[D, N]:
         var result = Vector[D, N]()
         for i in range(N):
