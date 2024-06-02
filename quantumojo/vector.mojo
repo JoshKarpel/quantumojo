@@ -23,9 +23,9 @@ struct Vector[D: DType, N: Int](Sized, Stringable):
         for i in range(N):
             s += str(self[i])
             if i < N - 1:
-                s += ", "
+                s += " "
 
-        return "¿" + s + "?"
+        return "〈 " + s + " 〉"
 
     @staticmethod
     fn zeros() -> Vector[D, N]:

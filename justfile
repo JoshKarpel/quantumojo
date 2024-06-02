@@ -31,6 +31,6 @@ test: package
   mojo test
 
 watch CMD:
-  watchfiles '{{CMD}}' quantumojo/ examples/ tests/ --ignore-paths tests/quantumojo.mojopkg,tests/vector/quantumojo.mojopkg
+  watchfiles '{{CMD}}' quantumojo/ examples/ tests/**/*.mojo
 
 watch-test: (watch 'just test')
