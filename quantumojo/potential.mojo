@@ -45,9 +45,7 @@ struct HarmonicOscillator[D: DType]:
             center=center,
         )
 
-    fn potential_energy[
-        N: Int
-    ](self, z: Vector[D, N], t: Scalar[D],) -> Vector[D, N]:
+    fn potential_energy[N: Int](self, z: Vector[D, N], t: Scalar[D]) -> Vector[D, N]:
         return 0.5 * self.spring_constant * ((z - self.center) ** 2)
 
     fn omega(self, mass: Scalar[D]) -> Scalar[D]:

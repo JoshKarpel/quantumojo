@@ -1,10 +1,11 @@
 from quantumojo.constants import *
 from quantumojo.potential import HarmonicOscillator
 from quantumojo.vector import Vector
+from quantumojo.plot import plot
 
 
-fn main() -> None:
-    alias N = 2**2 + 1
+fn main() raises -> None:
+    alias N = 2**10 + 1
     alias D = DType.float64
 
     alias mass = 1.0 * electron_mass
@@ -26,5 +27,9 @@ fn main() -> None:
 
     var z = Vector[D, N].linspace(-5 * length_scale, 5 * length_scale)
 
-    print("z (pm)", z / (pico * meter))
-    print("z (scale)", z / length_scale)
+    #     print("z (pm)", z / (pico * meter))
+    #     print("z (scale)", z / length_scale)
+
+    plot(z / length_scale, potential.potential_energy(z, 0) / electron_volt, "qho.png")
+
+    print("done")
